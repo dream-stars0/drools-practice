@@ -1,0 +1,14 @@
+package com.wangfl.droolstest
+
+import com.wangfl.droolstest.fact.Order
+
+rule "zero"
+    no-loop true
+    lock-on-active true
+    salience 1
+    when
+        $s : Order(amount < 1000)
+    then
+        $s.setScore(0);
+        update($s);
+end
