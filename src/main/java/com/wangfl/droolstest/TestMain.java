@@ -19,8 +19,8 @@ import java.util.List;
 public class TestMain {
     public static void main(String[] args) {
         // 使用规则引擎
-        KieServices ks = KieServices.get();
-        KieContainer kContainer = ks.getKieClasspathContainer();
+        KieServices ks = KieServices.get();//单例
+        KieContainer kContainer = ks.getKieClasspathContainer();//单例
         // 开启会话
         KieSession kieSession = kContainer.newKieSession("parameterRules");
         List<Order> orderList = getInitData();
