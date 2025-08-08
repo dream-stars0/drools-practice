@@ -1,2 +1,5 @@
-/project.log
-/project.log.*
+**/project.log
+**/project.log.*
+**/target/classes/*
+*.class
+/.idea/
