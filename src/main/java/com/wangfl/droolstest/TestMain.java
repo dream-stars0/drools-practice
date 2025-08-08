@@ -5,6 +5,7 @@ import com.wangfl.droolstest.fact.User;
 import lombok.SneakyThrows;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieContainerSessionsPool;
 import org.kie.api.runtime.KieSession;
 
 import java.text.DateFormat;
@@ -21,6 +22,8 @@ public class TestMain {
         // 使用规则引擎
         KieServices ks = KieServices.get();//单例
         KieContainer kContainer = ks.getKieClasspathContainer();//单例
+        KieContainerSessionsPool kieContainerSessionsPool = kContainer.newKieSessionsPool(10);
+        kContainer.dispose();
         // 开启会话
         KieSession kieSession = kContainer.newKieSession("parameterRules");
         List<Order> orderList = getInitData();
