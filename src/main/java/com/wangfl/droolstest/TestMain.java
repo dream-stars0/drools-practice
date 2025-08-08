@@ -22,8 +22,6 @@ public class TestMain {
         // 使用规则引擎
         KieServices ks = KieServices.get();//单例
         KieContainer kContainer = ks.getKieClasspathContainer();//单例
-        KieContainerSessionsPool kieContainerSessionsPool = kContainer.newKieSessionsPool(10);
-        kContainer.dispose();
         // 开启会话
         KieSession kieSession = kContainer.newKieSession("parameterRules");
         List<Order> orderList = getInitData();
