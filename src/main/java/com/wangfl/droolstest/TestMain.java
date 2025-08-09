@@ -20,17 +20,33 @@ import java.util.List;
 public class TestMain {
     public static void main(String[] args) {
         // 使用规则引擎
+        long step1 = System.currentTimeMillis();
         KieServices ks = KieServices.get();//单例
+
+        long step2 = System.currentTimeMillis();
+        System.out.println("step2:" + (step2 - step1));
         KieContainer kContainer = ks.getKieClasspathContainer();//单例
+
         // 开启会话
+        long step3 = System.currentTimeMillis();
+        System.out.println("step3:" + (step3 - step2));
         KieSession kieSession = kContainer.newKieSession("parameterRules");
+
+        long step4 = System.currentTimeMillis();
+        System.out.println("step4:" + (step4 - step3));
         List<Order> orderList = getInitData();
         for (Order order: orderList) {
             // 设置处理对象
+            long step5 = System.currentTimeMillis();
+            System.out.println("step5:" + (step5 - step4));
             kieSession.insert(order);
             // 应用全部规则
+            long step6 = System.currentTimeMillis();
+            System.out.println("step6:" + (step6 - step5));
             int fireCount = kieSession.fireAllRules();
             // 执行完规则后, 执行相关的逻辑
+            long step7 = System.currentTimeMillis();
+            System.out.println("step7:" + (step7 - step6));
             addScore(order);
         }
         // 终止会话
